@@ -293,11 +293,11 @@ class HotSearchPlugin(Star):
                 for group_id in self.groups:
                     try:
                         chain = MessageChain()
-                        chain.plain(f"【{name_cn}热搜】\n")
+                        chain.message(f"【{name_cn}热搜】\n")
                         if result.get("image_path"):
                             chain.file_image(result["image_path"])
                         elif result.get("text"):
-                            chain.plain(result["text"])
+                            chain.message(result["text"])
                         
                         await self.context.send_message(group_id, chain)
                         await asyncio.sleep(1) # 避免刷屏
@@ -546,7 +546,7 @@ class HotSearchPlugin(Star):
         elif ("崩坏学园" in text): game = "3"
         elif ("未定" in text): game = "4"
         elif ("大别野" in text): game = "5"
-        elif ("星穹铁道" in text) or ("铁道" in text): game = "6"
+        elif ("星穹铁道" in text) or ("铁道" in t): game = "6"
         elif ("绝区零" in text) or ("zzz" in t): game = "8"
         elif ("原神" in text): game = "2"
 
@@ -565,10 +565,9 @@ class HotSearchPlugin(Star):
     def _pick_juejin_type(self, text: str) -> str:
         t = text.lower()
         if ("前端" in text): return "6809637767543259144"
-        if ("后端" in text): return "6809637769959178254"
-        if ("android" in t) or ("安卓" in text): return "6809637773935378440"
+        if ("后端" in text) or ("android" in t) or ("安卓" in text): return "6809637773935378440"
         if ("ios" in t) or ("苹果" in text): return "6809637771511078925"
-        if ("人工智能" in text) or ("ai" in t): return "6809637776263217160"
+        if ("人工智���" in text) or ("ai" in t): return "6809637776263217160"
         if ("开发工具" in text) or ("工具" in text): return "6809637772874219534"
         if ("代码人生" in text): return "6931685841039015950"
         if ("阅读" in text): return "6809637770487652366"
